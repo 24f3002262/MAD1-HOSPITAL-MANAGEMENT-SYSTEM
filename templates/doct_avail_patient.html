@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Availability | Hospital Management System</title>
+    <link rel="stylesheet" href="/static/doct_avail_patient.css">
+</head>
+
+<body>
+    <header>
+        <div class="nav-bar">
+            <h2 class="user-name">Doctor's Availability</h2>
+            <ul>
+                <li><a href="{{ url_for('patient_history') }}">History</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="availability-container">
+            <div class="doctor-header">
+                <div class="doctor-info">
+                    <h2>Dr. {{ doctor.first_name }} {{ doctor.last_name }}</h2>
+                    <p class="specialization">{{ doctor.specialization }}</p>
+                    <p class="education">{{ doctor.education }} | {{ doctor.experience }} Years Experience</p>
+                </div>
+                <div class="header-actions">
+                    <input type="button" value="View Full Profile" class="profile-btn"
+                        onclick="window.location.href='{{ url_for('doct_profile', doctor_id=doctor.id) }}'">
+                    <input type="button" value="Back" class="back-btn"
+                        onclick="window.location.href='{{ url_for('patient_dashboard') }}'">
+                </div>
+            </div>
+
+            <h3 class="section-title">Doctor's Availability (Next 7 Days)</h3>
+
+            <!-- Group availability slots by date -->
+            {% set grouped_slots = {} %}
+            {% for slot in availability %}
+                {% set date_key = slot.date.strftime('%d/%m/%Y') %}
+                {% if date_key not in grouped_slots %}
+                    {% set _ = grouped_slots.update({date_key: []}) %}
+                {% endif %}
+                {% set _ = grouped_slots[date_key].append(slot) %}
+            {% endfor %}
+
+            <div class="calendar-container">
+                {% for date, slots in grouped_slots.items() %}
+                <div class="day-card">
+                    <div class="day-header">
+                        <h4>{{ date }}</h4>
+                        <span class="day-name">{{ slots[0].date.strftime('%A') }}</span>
+                    </div>
+
+                    <div class="slots">
+                        {% for slot in slots %}
+                            {% if slot.is_available %}
+                                <div class="slot available">
+                                    <span class="time">{{ slot.time_slot }}</span>
+                                    <input type="button" value="Book" class="book-btn"
+                                        onclick="window.location.href='{{ url_for('book_appointment', doctor_id=doctor.id) }}'">
+                                </div>
+                            {% else %}
+                                <div class="slot unavailable">
+                                    <span class="time">{{ slot.time_slot }}</span>
+                                    <span class="status">Not Available</span>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% else %}
+                    <p style="text-align:center; color:gray;">No availability set for the next 7 days.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>We provide high-quality healthcare with modern facilities and expert doctors.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('doctor_list') }}">Doctors</a>
+                    <a href="#departments">Departments</a>
+                    <a href="{{ url_for('patient_dashboard') }}">Appointments</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📍 ABC Road, Patna</p>
+                    <p>📞 +91-88756-58XXX</p>
+                    <p>✉️ info@hms.com</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Management System | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

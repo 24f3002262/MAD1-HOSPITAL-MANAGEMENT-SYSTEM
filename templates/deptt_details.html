@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Department Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='deptt_details.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-bar">
+            <h2 class="user-name">Department of {{ department.name }}</h2>
+            <ul>
+                <li><a href="{{ url_for('patient_history') }}">History</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="deptt-details">
+        <div class="overlay">
+            <h3>Overview</h3>
+            <p>{{ department.description }}</p>
+        </div>
+    </main>
+
+    <section class="container">
+        <h3 class="label">Doctor's List</h3>
+
+        <div class="doctors-list">
+            {% for d in doctors %}
+            <div class="doctor-card">
+                <div class="doctor-info">
+                    <h4>Dr. {{ d.first_name }} {{ d.last_name }}</h4>
+                    <p>Education: {{ d.education }}</p>
+                    <p>Experience: {{ d.experience }} Years</p>
+                </div>
+
+                <div class="doctor-actions">
+                    <input type="button" value="Check Availability" class="availability-btn"
+                           onclick="window.location.href='{{ url_for('doct_avail_patient', doctor_id=d.id) }}'">
+
+                    <input type="button" value="View Details" class="details-btn"
+                           onclick="window.location.href='{{ url_for('doct_profile', doctor_id=d.id) }}'">
+                </div>
+            </div>
+            {% endfor %}
+
+            {% if doctors|length == 0 %}
+            <p>No doctors available in this department at the moment.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>We provide high-quality healthcare with modern facilities and expert doctors.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('doctor_list') }}">Doctors</a>
+                    <a href="#departments">Departments</a>
+                    <a href="{{ url_for('patient_dashboard') }}">Appointments</a>
+                </div>
+
+                <div class="footer-section" id="contact">
+                    <h4>Contact</h4>
+                    <p>📍 ABC Road, Patna</p>
+                    <p>📞 +91-88756-58XXX</p>
+                    <p>✉️ info@hms.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Management System | All Rights Reserved</p>
+            </div>
+    </footer>
+
+</body>
+
+</html>

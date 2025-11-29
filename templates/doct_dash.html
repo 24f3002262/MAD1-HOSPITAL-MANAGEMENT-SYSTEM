@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard | Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='doct_dash.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="nav-bar">
+            <h2>Welcome, Dr. {{ doctor.first_name }}</h2>
+            <ul>
+                <li><a href="{{ url_for('doctor_availability') }}">Availability</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="containers">
+        <div class="appo-container">
+            <h2>Upcoming Appointments</h2>
+            <table>
+                <tr class="head">
+                    <th>Sr. No.</th>
+                    <th>Patient Name</th>
+                    <th>Patient History</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+
+                {% for appt in appointments %}
+                <tr class="tag">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ appt.patient.first_name }} {{ appt.patient.last_name }}</td>
+                    <td><a href="{{ url_for('doctor_patient_history', patient_id=appt.patient.id) }}" class="view-btn">View</a></td>
+                    <td>{{ appt.appointment_date }}</td>
+                    <td>{{ appt.appointment_time }}</td>
+                    <td>
+                        <a href="{{ url_for('update_treatment', appointment_id=appt.id) }}" class="complete-btn">Update as Completed</a>
+
+                        <form method="POST" action="{{ url_for('cancel_appointment', appt_id=appt.id) }}" style="display:inline;">
+                            <input type="submit" value="Cancel" class="cancel-btn">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            {% if not appointments %}
+            <p style="text-align:center; color:gray;">No appointments scheduled</p>
+            {% endif %}
+        </div>
+
+        <div class="patients-container">
+            <h2 class="section-header">Assigned Patients</h2>
+            <table>
+                <tr class="head">
+                    <th>Sr. No.</th>
+                    <th>Patient ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                {% for pat in patients %}
+                <tr class="tag">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ pat.patient_id }}</td>
+                    <td>{{ pat.first_name }} {{ pat.last_name }}</td>
+                    <td>
+                        <a href="{{ url_for('doctor_patient_history', patient_id=pat.id) }}" class="view-history-btn">View History</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>We provide high-quality healthcare with modern facilities and expert doctors.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('doctor_list') }}">Doctors</a>
+                    <a href="#departments">Departments</a>
+                    <a href="{{ url_for('doctor_dashboard') }}">Appointments</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📍 ABC Road, Patna</p>
+                    <p>📞 +91-88756-58XXX</p>
+                    <p>✉️ info@hms.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Management System | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

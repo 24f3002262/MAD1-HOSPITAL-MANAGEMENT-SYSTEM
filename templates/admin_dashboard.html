@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="nav-bar">
+            <h2 class="user-name">Welcome! {{ session['username'] }}</h2>
+            <ul>
+                <li><a href="{{ url_for('admin_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="containers">
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Total Doctors</h3>
+                <p class="stat-number">{{ total_doctors }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Patients</h3>
+                <p class="stat-number">{{ total_patients }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Appointments</h3>
+                <p class="stat-number">{{ total_appointments }}</p>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <h2 class="section-header">Search</h2>
+            <div class="search-box">
+                <input type="text" placeholder="Search patients, departments, doctors..." id="search-input">
+                <input type="button" value="Search" class="search-btn">
+            </div>
+        </div>
+
+        <div class="doctors-container">
+            <div class="section-title">
+                <h2 class="section-header">Registered Doctors</h2>
+                <input type="button" value="+ Add Doctor" class="add-btn"
+                       onclick="window.location.href='{{ url_for('add_doctor') }}'">
+            </div>
+            <table>
+                <tr class="head">
+                    <th>Sr. No.</th>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Experience</th>
+                    <th>Actions</th>
+                </tr>
+                {% for d in doctors %}
+                <tr class="tag">
+                    <td>{{ loop.index }}</td>
+                    <td>Dr. {{ d.first_name }} {{ d.last_name }}</td>
+                    <td>{{ d.specialization }}</td>
+                    <td>{{ d.experience }} Years</td>
+                    <td>
+                        <input type="button" value="View" class="edit-btn"
+                               onclick="location.href='{{ url_for('doct_profile', doctor_id=d.id) }}'">
+                        <input type="button" value="Blacklist" class="delete-btn">
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="patients-container">
+            <h2 class="section-header">Registered Patients</h2>
+            <table>
+                <tr class="head">
+                    <th>Sr. No.</th>
+                    <th>Patient ID</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Actions</th>
+                </tr>
+                {% for p in patients %}
+                <tr class="tag">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ p.patient_id }}</td>
+                    <td>{{ p.first_name }} {{ p.last_name }}</td>
+                    <td>{{ p.contact }}</td>
+                    <td>
+                        <input type="button" value="View" class="view-btn"
+                               onclick="location.href='{{ url_for('admin_patient_history', patient_id=p.id) }}'">
+                        <input type="button" value="Blacklist" class="delete-btn">
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="appo-container">
+            <h2 class="section-header">Upcoming Appointments</h2>
+            <table>
+                <tr class="head">
+                    <th>Sr. No.</th>
+                    <th>Appointment ID</th>
+                    <th>Patient Name</th>
+                    <th>Department</th>
+                    <th>Patient History</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+                {% for a in appointments %}
+                <tr class="tag">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ a.appointment_id }}</td>
+                    <td>{{ a.patient.first_name }} {{ a.patient.last_name }}</td>
+                    <td>{{ a.doctor.department.name }}</td>
+                    <td>
+                        <input type="button" value="View" class="view-small-btn"
+                               onclick="location.href='{{ url_for('admin_patient_history', patient_id=a.patient.id) }}'">
+                    </td>
+                    <td>{{ a.appointment_date.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ a.appointment_time }}</td>
+                    <td>
+                        {% if a.status == 'Booked' %}
+                            <span class="status-booked">Booked</span>
+                        {% elif a.status == 'Completed' %}
+                            <span class="status-completed">Completed</span>
+                        {% else %}
+                            <span class="status-cancelled">Cancelled</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>We provide high-quality healthcare with modern facilities and expert doctors.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('doctor_list') }}">Doctors</a>
+                    <a href="#departments">Departments</a>
+                    <a href="{{ url_for('admin_dashboard') }}">Appointments</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📍 ABC Road, Patna</p>
+                    <p>📞 +91-88756-58XXX</p>
+                    <p>✉️ info@hms.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Management System | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

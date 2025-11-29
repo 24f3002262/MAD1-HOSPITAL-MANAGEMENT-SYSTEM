@@ -1,0 +1,385 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Arial, Helvetica;
+    margin: 0;
+    padding-top: 100px;
+    background-color: rgb(230, 242, 255);
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 70, 140);
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    box-sizing: border-box;
+    color: white;
+    padding: 10px 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar ul li {
+    margin-left: 25px;
+}
+
+.nav-bar ul li a {
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.nav-bar ul li a:hover {
+    text-decoration: underline;
+}
+
+.profile-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.profile-header {
+    background: linear-gradient(135deg, rgb(0, 102, 204), rgb(0, 70, 140));
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.doctor-image {
+    flex-shrink: 0;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    color: rgb(0, 70, 140);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.doctor-main-info {
+    flex: 1;
+}
+
+.doctor-main-info h1 {
+    margin: 0 0 10px 0;
+    font-size: 36px;
+}
+
+.specialization {
+    font-size: 20px;
+    margin: 5px 0;
+    opacity: 0.95;
+}
+
+.department {
+    font-size: 16px;
+    margin: 5px 0;
+    opacity: 0.85;
+}
+
+.quick-stats {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.stat strong {
+    font-size: 28px;
+    display: block;
+}
+
+.stat span {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.availability-btn,
+.book-btn,
+.back-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    white-space: nowrap;
+}
+
+.availability-btn {
+    background-color: rgb(52, 152, 219);
+    color: white;
+}
+
+.availability-btn:hover {
+    background-color: rgb(41, 128, 185);
+}
+
+.book-btn {
+    background-color: rgb(39, 174, 96);
+    color: white;
+}
+
+.book-btn:hover {
+    background-color: rgb(30, 132, 73);
+}
+
+.back-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.info-section h2 {
+    color: rgb(0, 70, 140);
+    font-size: 24px;
+    margin-bottom: 15px;
+    border-bottom: 3px solid rgb(0, 102, 204);
+    padding-bottom: 8px;
+}
+
+.info-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-card ul li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgb(230, 242, 255);
+    line-height: 1.6;
+}
+
+.info-card ul li:last-child {
+    border-bottom: none;
+}
+
+.expertise-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    background-color: rgb(230, 242, 255);
+    color: rgb(0, 70, 140);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 2px solid rgb(0, 102, 204);
+}
+
+.experience-item {
+    padding: 20px 0;
+    border-bottom: 2px solid rgb(230, 242, 255);
+}
+
+.experience-item:last-child {
+    border-bottom: none;
+}
+
+.experience-item h4 {
+    color: rgb(0, 70, 140);
+    margin: 0 0 8px 0;
+    font-size: 20px;
+}
+
+.organization {
+    color: rgb(0, 102, 204);
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.duration {
+    color: rgb(100, 100, 100);
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.description {
+    color: rgb(68, 68, 68);
+    margin: 10px 0 0 0;
+    line-height: 1.6;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.service-item {
+    padding: 15px;
+    background-color: rgb(245, 250, 255);
+    border-radius: 8px;
+    border-left: 4px solid rgb(0, 102, 204);
+}
+
+.service-item h4 {
+    color: rgb(0, 70, 140);
+    margin: 0 0 12px 0;
+    font-size: 18px;
+}
+
+.service-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.service-item ul li {
+    padding: 8px 0;
+    color: rgb(68, 68, 68);
+    border-bottom: 1px solid rgb(220, 235, 250);
+}
+
+.service-item ul li:last-child {
+    border-bottom: none;
+}
+
+.contact-details p {
+    padding: 12px 0;
+    color: rgb(68, 68, 68);
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.review {
+    padding: 20px;
+    background-color: rgb(245, 250, 255);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid rgb(255, 193, 7);
+}
+
+.review:last-child {
+    margin-bottom: 0;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-header strong {
+    color: rgb(0, 70, 140);
+    font-size: 16px;
+}
+
+.rating {
+    color: rgb(255, 193, 7);
+    font-size: 16px;
+}
+
+.review p {
+    color: rgb(68, 68, 68);
+    margin: 0;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+footer {
+    background-color: rgb(0, 70, 140);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.footer-section {
+    width: 250px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    border-bottom: 2px solid white;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid white;
+    padding-top: 10px;
+    font-size: 13px;
+    color: white;
+}

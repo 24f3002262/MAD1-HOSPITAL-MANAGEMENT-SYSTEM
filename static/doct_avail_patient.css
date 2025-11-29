@@ -1,0 +1,272 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Arial, Helvetica;
+    margin: 0;
+    padding-top: 100px;
+    background-color: rgb(230, 242, 255);
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 70, 140);
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    box-sizing: border-box;
+    color: white;
+    padding: 10px 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar ul li {
+    margin-left: 25px;
+}
+
+.nav-bar ul li a {
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.nav-bar ul li a:hover {
+    text-decoration: underline;
+}
+
+.availability-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.doctor-header {
+    background: rgb(0, 102, 204);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.doctor-info h2 {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+}
+
+.specialization {
+    font-size: 18px;
+    margin: 5px 0;
+    opacity: 0.9;
+}
+
+.education {
+    font-size: 15px;
+    margin: 5px 0;
+    opacity: 0.85;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.profile-btn,
+.back-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.profile-btn {
+    background-color: white;
+    color: rgb(0, 70, 140);
+}
+
+.profile-btn:hover {
+    background-color: rgb(230, 242, 255);
+}
+
+.back-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.section-title {
+    text-align: center;
+    color: rgb(0, 70, 140);
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+.calendar-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.day-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.day-card:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.day-header {
+    background-color: rgb(0, 70, 140);
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.day-header h4 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+}
+
+.day-name {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.slots {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.slot.available {
+    background-color: rgb(212, 237, 218);
+    border-left: 4px solid rgb(39, 174, 96);
+}
+
+.slot.available:hover {
+    background-color: rgb(195, 230, 203);
+}
+
+.slot.unavailable {
+    background-color: rgb(248, 215, 218);
+    border-left: 4px solid rgb(231, 76, 60);
+}
+
+.slot.booked {
+    background-color: rgb(255, 243, 205);
+    border-left: 4px solid rgb(255, 193, 7);
+}
+
+.slot .time {
+    font-weight: bold;
+    color: rgb(0, 70, 140);
+    font-size: 14px;
+}
+
+.slot .status {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(100, 100, 100);
+}
+
+.book-btn {
+    padding: 6px 18px;
+    background-color: rgb(39, 174, 96);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.book-btn:hover {
+    background-color: rgb(30, 132, 73);
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: rgb(0, 70, 140);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.footer-section {
+    width: 250px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    border-bottom: 2px solid white;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid white;
+    padding-top: 10px;
+    font-size: 13px;
+    color: white;
+}

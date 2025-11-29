@@ -1,0 +1,211 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding-top: 50px;
+    background-color: rgb(230, 242, 255);
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 70, 140);
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    box-sizing: border-box;
+    color: white;
+    padding: 10px 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.back-btn {
+    padding: 8px 20px;
+    background-color: white;
+    color: rgb(0, 70, 140);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: rgb(230, 242, 255);
+}
+
+.availability-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.section-title {
+    text-align: center;
+    color: rgb(0, 70, 140);
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.instruction {
+    text-align: center;
+    color: rgb(100, 100, 100);
+    margin-bottom: 40px;
+    font-size: 15px;
+}
+
+.date-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.day-card {
+    background-color: rgb(245, 250, 255);
+    border: 2px solid rgb(200, 220, 240);
+    border-radius: 10px;
+    padding: 20px;
+    transition: 0.3s ease;
+}
+
+.day-card:hover {
+    border-color: rgb(0, 102, 204);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+}
+
+.day-header {
+    border-bottom: 2px solid rgb(0, 70, 140);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.day-header h3 {
+    margin: 0;
+    color: rgb(0, 70, 140);
+    font-size: 20px;
+}
+
+.day-name {
+    color: rgb(100, 100, 100);
+    font-size: 14px;
+}
+
+.time-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.slot {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background-color: white;
+    border: 1px solid rgb(200, 220, 240);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.slot:hover {
+    background-color: rgb(230, 242, 255);
+    border-color: rgb(0, 102, 204);
+}
+
+.slot input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.slot span {
+    color: rgb(0, 70, 140);
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.slot input[type="checkbox"]:checked + span {
+    color: rgb(39, 174, 96);
+    font-weight: bold;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.save-btn {
+    padding: 15px 60px;
+    background-color: rgb(39, 174, 96);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: rgb(30, 132, 73);
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: rgb(0, 70, 140);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.footer-section {
+    width: 250px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    border-bottom: 2px solid white;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid white;
+    padding-top: 10px;
+    font-size: 13px;
+    color: white;
+}

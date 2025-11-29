@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile | Hospital Management System</title>
+    <link rel="stylesheet" href="/static/doct_profile.css">
+</head>
+
+<body>
+    <header>
+        <div class="nav-bar">
+            <h2 class="user-name">Doctor's Profile</h2>
+            <ul>
+                {% if session['user_type'] == 'patient' %}
+                    <li><a href="{{ url_for('patient_history') }}">History</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="doctor-image">
+                    <div class="avatar">
+                        <span>{{ doctor.first_name[0] }}{{ doctor.last_name[0] }}</span>
+                    </div>
+                </div>
+
+                <div class="doctor-main-info">
+                    <h1>Dr. {{ doctor.first_name }} {{ doctor.last_name }}</h1>
+                    <p class="specialization">{{ doctor.specialization }}</p>
+                    <p class="department">Department of {{ doctor.department.name }}</p>
+
+                    <div class="quick-stats">
+                        <div class="stat">
+                            <strong>{{ doctor.experience }}+</strong>
+                            <span>Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <strong>{{ doctor.contact }}</strong>
+                            <span>Phone</span>
+                        </div>
+                        <div class="stat">
+                            <strong>{{ doctor.email }}</strong>
+                            <span>Email</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    {% if session['user_type'] == 'patient' %}
+                        <input type="button" value="Check Availability" class="availability-btn"
+                               onclick="window.location.href='{{ url_for('doct_avail_patient', doctor_id=doctor.id) }}'">
+
+                        <input type="button" value="Book Appointment" class="book-btn"
+                               onclick="window.location.href='{{ url_for('book_appointment', doctor_id=doctor.id) }}'">
+                    {% endif %}
+
+                    <input type="button" value="Back" class="back-btn"
+                        onclick="window.location.href=
+                        '{% if session['user_type'] == 'patient' %}
+                            {{ url_for('patient_dashboard') }}
+                        {% else %}
+                            {{ url_for('doctor_dashboard') }}
+                        {% endif %}'">
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="info-section">
+                    <h2>Educational Qualifications</h2>
+                    <div class="info-card">
+                        <p>{{ doctor.education }}</p>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2>Experience</h2>
+                    <div class="info-card">
+                        <p>{{ doctor.experience }} Years</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Management System | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

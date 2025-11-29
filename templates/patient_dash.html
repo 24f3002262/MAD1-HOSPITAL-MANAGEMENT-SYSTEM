@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='patient_dash.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="nav-bar">
+            <h2 class="user-name">Welcome! {{ patient.first_name }}</h2>
+            <ul>
+                <li><a href="{{ url_for('doctor_list') }}">Book New Appointment</a></li>
+                <li><a href="{{ url_for('patient_history') }}">History</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="containers">
+        <div class="dash-container">
+            <h2 class="dept-header">Dashboard</h2>
+            <form id="dash-form">
+                <label>Name</label>
+                <input type="text" value="{{ patient.first_name }} {{ patient.last_name }}" readonly>
+                <label>Patient ID</label>
+                <input type="text" value="{{ patient.patient_id }}" readonly>
+                <label>Age</label>
+                <input type="number" value="{{ patient.age }}" readonly>
+                <label>Sex</label>
+                <input type="text" value="{{ patient.sex }}" readonly>
+                <label>Blood Group</label>
+                <input type="text" value="{{ patient.blood_group }}" readonly>
+                <label>Contact</label>
+                <input type="text" value="{{ patient.contact }}" readonly>
+                <label>City</label>
+                <input type="text" value="{{ patient.city }}" readonly>
+                <label>Pincode</label>
+                <input type="text" value="{{ patient.pincode }}" readonly>
+                <label>State</label>
+                <input type="text" value="{{ patient.state }}" readonly>
+                <label>Country</label>
+                <input type="text" value="{{ patient.country }}" readonly>
+
+                <div class="button">
+                    <input type="button" id="editbtn" value="Edit Profile">
+                    <input type="button" id="savebtn" value="Save Changes" style="display: none;">
+                </div>
+            </form>
+        </div>
+
+        <div class="dept-container">
+            <h2 class="dept-header">Our Departments</h2>
+            <div class="container">
+
+                <!-- Cardiology -->
+                <div class="cards">
+                    <div class="img-box">
+                        <img src="/static/images/cardiology.png" alt="cardiology">
+                    </div>
+                    <div class="details">
+                        <h3>Cardiology</h3>
+                        <p><span>Healing Hearts, Restoring Lives.</span></p>
+                        <p>Deals with heart diseases, cardiovascular treatments, and cardiac care.</p>
+                        <input type="button" value="View details"
+                            onclick="window.location.href='{{ url_for('deptt_details', dept_id=1) }}'">
+                    </div>
+                </div>
+
+                <!-- Neurology -->
+                <div class="cards">
+                    <div class="img-box">
+                        <img src="/static/images/neurology.png" alt="neurology">
+                    </div>
+                    <div class="details">
+                        <h3>Neurology</h3>
+                        <p><span>Where Every Mind Matters.</span></p>
+                        <p>Deals with brain and nervous system disorders.</p> <!-- Corrected text -->
+                        <input type="button" value="View details"
+                            onclick="window.location.href='{{ url_for('deptt_details', dept_id=2) }}'">
+                    </div>
+                </div>
+
+                <!-- Orthopedics -->
+                <div class="cards">
+                    <div class="img-box">
+                        <img src="/static/images/orthopedics.png" alt="orthopedics">
+                    </div>
+                    <div class="details">
+                        <h3>Orthopedics</h3>
+                        <p><span>Stronger Bones, Stronger You.</span></p>
+                        <p>Focuses on bones, joints, muscles, ligaments, and spine care.</p>
+                        <input type="button" value="View details"
+                            onclick="window.location.href='{{ url_for('deptt_details', dept_id=3) }}'">
+                    </div>
+                </div>
+
+                <!-- Pediatrics -->
+                <div class="cards">
+                    <div class="img-box">
+                        <img src="/static/images/pediatrics.png" alt="pediatrics">
+                    </div>
+                    <div class="details">
+                        <h3>Pediatrics</h3>
+                        <p><span>Caring for the Little Miracles.</span></p>
+                        <p>Provides medical care for infants, children, and adolescents.</p>
+                        <input type="button" value="View details"
+                            onclick="window.location.href='{{ url_for('deptt_details', dept_id=4) }}'">
+                    </div>
+                </div>
+
+                <!-- Emergency -->
+                <div class="cards">
+                    <div class="img-box">
+                        <img src="/static/images/emergency.png" alt="emergency.png">
+                    </div>
+                    <div class="details">
+                        <h3>Emergency & Critical Care</h3>
+                        <p><span>Every Second Counts.</span></p>
+                        <p>Handles life-threatening conditions and emergency treatments 24/7.</p>
+                        <input type="button" value="View details"
+                            onclick="window.location.href='{{ url_for('deptt_details', dept_id=5) }}'">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="appo-container">
+            <h2 class="dept-header">Upcoming Appoinments</h2>
+            <table>
+                <tr class="head">
+                    <th>Sr. No.</th>
+                    <th>Doctor's Name</th>
+                    <th>Department</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                </tr>
+
+                {% for appt in appointments %}
+                <tr class="tag">
+                    <td>{{ loop.index }}</td>
+                    <td>Dr. {{ appt.doctor.first_name }} {{ appt.doctor.last_name }}</td>
+                    <td>{{ appt.doctor.department.name }}</td>
+                    <td>{{ appt.appointment_date }}</td>
+                    <td>{{ appt.appointment_time }}</td>
+                    <td>
+                        {% if appt.status == 'Booked' %}
+                        <form method="POST" action="{{ url_for('cancel_appointment', appt_id=appt.id) }}">
+                            <input type="submit" value="Cancel">
+                        </form>
+                        {% else %}
+                        <span>{{ appt.status }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            {% if not appointments %}
+            <p style="text-align:center; color:gray; padding:10px;">No appointments found</p>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>We provide high-quality healthcare with modern facilities and expert doctors.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('doctor_list') }}">Doctors</a>
+                    <a href="#departments">Departments</a>
+                    <a href="{{ url_for('patient_dashboard') }}">Appointments</a>
+                </div>
+
+                <div class="footer-section" id="contact">
+                    <h4>Contact</h4>
+                    <p>📍 ABC Road, Patna</p>
+                    <p>📞 +91-88756-58XXX</p>
+                    <p>✉️ info@hms.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Management System | All Rights Reserved</p>
+            </div>
+    </footer>
+
+</body>
+
+</html>

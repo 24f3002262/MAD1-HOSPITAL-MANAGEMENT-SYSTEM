@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login_form.css') }}">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-bar">
+            <h2>🏥 Hospital Management System</h2>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('doctor_list') }}">Doctors</a></li>
+                <li><a href="#departments">Departments</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="loginBox">
+                <h2 class="headText">Login</h2>
+
+                <form method="POST" action="{{ url_for('login') }}">
+                    <div class="user-credentials">
+                        <h3 class="userdetails">Username</h3>
+                        <input class="d1" type="text" name="username" placeholder="Enter email or username" required>
+
+                        <h3 class="userdetails">Password</h3>
+                        <input class="d1" type="password" name="password" placeholder="Enter password" required>
+
+                        <div class="forgot">
+                            <a href="#">Forgot password?</a>
+                        </div>
+                    </div>
+
+                    <div class="btn">
+                        <input type="submit" value="Login">
+                    </div>
+
+                    <div class="end">
+                        <p class="d2">Don't have an account?</p>
+                        <a href="{{ url_for('register') }}" class="d2">Register</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>We provide high-quality healthcare with modern facilities and expert doctors.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('doctor_list') }}">Doctors</a>
+                    <a href="#departments">Departments</a>
+                    <a href="{{ url_for('login') }}">Appointments</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📍 ABC Road, Patna</p>
+                    <p>📞 +91-88756-58XXX</p>
+                    <p>✉️ info@hms.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Management System | All Rights Reserved</p>
+            </div>
+    </footer>
+
+</body>
+
+</html>

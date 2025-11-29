@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Doctors | Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='doctor_list.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="nav-bar">
+            <h2>🏥 Hospital Management System</h2>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('doctor_list') }}">Doctors</a></li>
+                <li><a href="#departments">Departments</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <h2>Our Expert Medical Team</h2>
+            <p>Meet our highly qualified and experienced doctors dedicated to providing exceptional healthcare.</p>
+        </section>
+
+        <section class="search-section">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search by doctor name or specialization...">
+                <select id="filter-department">
+                    <option value="">All Departments</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Orthopedics">Orthopedics</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="Emergency">Emergency & Critical Care</option>
+                </select>
+                <input type="button" value="Search" class="search-btn">
+            </div>
+        </section>
+
+        <section class="doctors-section">
+            <h2>All Doctors</h2>
+            <div class="doctors-grid">
+                {% for doctor in doctors %}
+                <div class="doctor-card">
+                    <div class="doctor-avatar">
+                        <span>{{ doctor.first_name[0] }}{{ doctor.last_name[0] }}</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. {{ doctor.first_name }} {{ doctor.last_name }}</h3>
+                        <p class="specialization">{{ doctor.specialization }}</p>
+                        <p class="education">{{ doctor.education }}</p>
+                        <p class="experience">Experience: {{ doctor.experience }} Years</p>
+                    </div>
+
+                    <div class="doctor-actions">
+                        {% if session.get('user_type') %}
+                        <!-- for patient -->
+                        {% if session.get('user_type') == 'patient' %}
+                        <a href="{{ url_for('doct_profile', doctor_id=doctor.id) }}" class="profile-btn">View
+                            Profile</a>
+                        <a href="{{ url_for('doct_avail_patient', doctor_id=doctor.id) }}"
+                            class="availability-btn">Check Availability</a>
+                        <a href="{{ url_for('book_appointment', doctor_id=doctor.id) }}" class="book-btn">Book
+                            Appointment</a>
+
+                        <!-- for admin and doctor -->
+                        {% else %}
+                        <a href="{{ url_for('doct_profile', doctor_id=doctor.id) }}" class="profile-btn">View
+                            Profile</a>
+                        <button class="availability-btn" onclick="alert('Only patients can check availability.')">Check
+                            Availability</button>
+                        <button class="book-btn" onclick="alert('Only patients can book an appointment.')">Book
+                            Appointment</button>
+                        {% endif %}
+
+                        {% else %}
+                        <!-- non-loggedin -->
+                        <a href="{{ url_for('login') }}" class="profile-btn">View Profile</a>
+                        <a href="{{ url_for('login') }}" class="availability-btn">Check Availability</a>
+                        <a href="{{ url_for('login') }}" class="book-btn">Book Appointment</a>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>We provide high-quality healthcare with modern facilities and expert doctors.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="">Home</a>
+                    <a href="">Doctors</a>
+                    <a href="#departments">Departments</a>
+                    <a href="">Appointments</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📍 ABC Road, Patna</p>
+                    <p>📞 +91-88756-58XXX</p>
+                    <p>✉️ info@hms.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Management System | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

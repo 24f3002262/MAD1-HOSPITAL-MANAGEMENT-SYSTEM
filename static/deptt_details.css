@@ -1,0 +1,192 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding-top: 50px;
+    background-color: rgb(230, 242, 255);
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 70, 140);
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    padding: 10px 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+}
+
+.nav-bar ul li {
+    margin-left: 25px;
+}
+
+.nav-bar ul li a {
+    font-size: 16px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.nav-bar ul li:hover {
+    text-decoration: underline;
+}
+
+.deptt-details {
+    background: url("/static/images/doctors.png") center/cover;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.65);
+    color: rgb(255, 255, 255);
+    padding: 30px;
+    width: 70%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.label {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: rgb(0, 0, 0);
+}
+
+.doctors-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.doctor-card {
+    width: 80%;
+    max-width: 900px;
+    background-color: rgb(255, 255, 255);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.doctor-info h4 {
+    margin: 0;
+    font-size: 22px;
+    color: rgb(0, 70, 140);
+}
+
+.doctor-info p {
+    margin: 5px 0;
+    color: rgb(68, 68, 68);
+}
+
+.doctor-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.doctor-actions input {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.availability-btn {
+    background-color: rgb(39, 174, 96);
+    color: rgb(255, 255, 255);
+}
+
+.details-btn {
+    background-color: rgb(0, 102, 204);
+    color: rgb(255, 255, 255);
+}
+
+.availability-btn:hover {
+    background-color: rgb(30, 132, 73);
+}
+
+.details-btn:hover {
+    background-color: rgb(1, 124, 246);
+}
+
+
+
+
+footer {
+    background-color: rgb(0, 70, 140);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.footer-section {
+    width: 250px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    border-bottom: 2px solid white;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid white;
+    padding-top: 10px;
+    font-size: 13px;
+    color: white;
+}

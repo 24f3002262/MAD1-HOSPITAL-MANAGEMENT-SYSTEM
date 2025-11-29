@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: rgb(230, 242, 255);
+    padding-top: 90px;
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 70, 140);
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    color: white;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.nav-bar h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar ul li {
+    margin-left: 25px;
+}
+
+.nav-bar ul li a {
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.nav-bar ul li:hover a {
+    text-decoration: underline;
+}
+
+
+.container {
+    width: 500px;
+    margin: 50px auto;
+}
+
+.registerBox {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.registerBox h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(0, 70, 140);
+}
+
+.registerBox .row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.registerBox input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgb(170, 200, 240);
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.registerBox input:focus {
+    border-color: rgb(0, 102, 204);
+}
+
+.email-field {
+    margin-bottom: 15px;
+}
+
+.register-btn {
+    width: 100%;
+    background-color: rgb(0, 102, 204);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+    background-color: rgb(0, 85, 170);
+}
+
+.login-text {
+    text-align: center;
+    margin-top: 15px;
+    color: rgb(0, 70, 140);
+    font-size: 14px;
+}
+
+.login-text a {
+    color: rgb(0, 70, 140);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+
+footer {
+    background-color: rgb(0, 70, 140);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.footer-section {
+    width: 250px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    border-bottom: 2px solid white;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid white;
+    padding-top: 10px;
+    font-size: 13px;
+    color: white;
+}

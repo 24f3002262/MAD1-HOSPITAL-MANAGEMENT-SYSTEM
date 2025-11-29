@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History | Hospital Management System</title>
+    <link rel="stylesheet" href="/static/patient_history.css">
+</head>
+
+<body>
+    <header>
+        <div class="nav-bar">
+            <h2>Patient History</h2>
+            {% if session.get('user_type') == 'patient' %}
+            <input type="button" class="back-btn" value="Back"
+                onclick="window.location.href='{{ url_for('patient_dashboard') }}'">
+            {% elif session.get('user_type') == 'doctor' %}
+            <input type="button" class="back-btn" value="Back"
+                onclick="window.location.href='{{ url_for('doctor_dashboard') }}'">
+            {% elif session.get('user_type') == 'admin' %}
+            <input type="button" class="back-btn" value="Back"
+                onclick="window.location.href='{{ url_for('admin_dashboard') }}'">
+            {% else %}
+            <input type="button" class="back-btn" value="Back" onclick="window.location.href='{{ url_for('index') }}'">
+            {% endif %}
+
+        </div>
+    </header>
+
+    <main>
+        <div class="patients-details-container">
+            <table>
+                <!-- Patient Info -->
+                <tr class="heading">
+                    <td colspan="6">Patient Details</td>
+                </tr>
+                <tr>
+                    <td class="label">Name</td>
+                    <td>{{ patient.first_name }} {{ patient.last_name }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Patient ID</td>
+                    <td>{{ patient.patient_id }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Age</td>
+                    <td>{{ patient.age if patient.age else '-' }} Years</td>
+                </tr>
+                <tr>
+                    <td class="label">Sex</td>
+                    <td>{{ patient.sex if patient.sex else '-' }}</td>
+                </tr>
+
+                <!-- Latest Visit Info -->
+                <tr>
+                    <td class="label">Last Visiting Department</td>
+                    <td>
+                        {% if appointments %}
+                        {{ appointments[-1].doctor.department.name }}
+                        {% else %}
+                        -
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">Last Consulted Doctor</td>
+                    <td>
+                        {% if appointments %}
+                        Dr. {{ appointments[-1].doctor.first_name }} {{ appointments[-1].doctor.last_name }}
+                        {% else %}
+                        -
+                        {% endif %}
+                    </td>
+                </tr>
+
+                <!-- History -->
+                <tr class="heading">
+                    <td colspan="6">Treatment History</td>
+                </tr>
+                <tr>
+                    <th>Visit No.</th>
+                    <th>Visit Type</th>
+                    <th>Tests Done</th>
+                    <th>Diagnosis</th>
+                    <th>Prescription</th>
+                    <th>Medicines</th>
+                </tr>
+
+                {% for appt in appointments %}
+                <tr class="label1">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ appt.treatment.visit_type if appt.treatment else '-' }}</td>
+                    <td>{{ appt.treatment.tests_done if appt.treatment and appt.treatment.tests_done else '-' }}</td>
+                    <td>{{ appt.treatment.diagnosis if appt.treatment else '-' }}</td>
+                    <td>{{ appt.treatment.prescription if appt.treatment else '-' }}</td>
+                    <td>{{ appt.treatment.medicines if appt.treatment and appt.treatment.medicines else '-' }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            {% if not appointments %}
+            <p style="text-align:center; color: gray; margin-top: 20px;">No history available.</p>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>We provide high-quality healthcare with modern facilities and expert doctors.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('doctor_list') }}">Doctors</a>
+                    <a href="#departments">Departments</a>
+                    <a href="{{ url_for('patient_dashboard') }}">Appointments</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📍 ABC Road, Patna</p>
+                    <p>📞 +91-88756-58XXX</p>
+                    <p>✉️ info@hms.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Management System | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

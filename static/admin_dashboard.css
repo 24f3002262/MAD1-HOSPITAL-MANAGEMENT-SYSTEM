@@ -1,0 +1,308 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Arial, Helvetica;
+    margin: 0;
+    padding-top: 100px;
+    background-color: rgb(230, 242, 255);
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 70, 140);
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    box-sizing: border-box;
+    color: white;
+    padding: 10px 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar ul li {
+    margin-left: 25px;
+}
+
+.nav-bar ul li a {
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.nav-bar ul li a:hover {
+    text-decoration: underline;
+}
+
+.containers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+/* Statistics Cards */
+.stats-container {
+    display: flex;
+    gap: 30px;
+    width: 80%;
+    max-width: 1200px;
+    justify-content: center;
+}
+
+.stat-card {
+    flex: 1;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.stat-card h3 {
+    margin: 0 0 15px 0;
+    color: rgb(0, 70, 140);
+    font-size: 18px;
+}
+
+.stat-number {
+    font-size: 42px;
+    font-weight: bold;
+    color: rgb(0, 102, 204);
+    margin: 0;
+}
+
+/* Search Container */
+.search-container {
+    width: 80%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.section-header {
+    text-align: center;
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: rgb(0, 70, 140);
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid rgb(170, 200, 240);
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+.search-box input[type="text"]:focus {
+    border-color: rgb(0, 102, 204);
+}
+
+.search-btn {
+    padding: 12px 30px;
+    background-color: rgb(0, 102, 204);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: rgb(0, 85, 170);
+}
+
+/* Doctors and Patients Containers */
+.doctors-container,
+.patients-container,
+.appo-container {
+    width: 80%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-btn {
+    padding: 10px 20px;
+    background-color: rgb(39, 174, 96);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: rgb(30, 132, 73);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.head {
+    background-color: rgb(0, 70, 140);
+    color: white;
+    font-weight: bold;
+}
+
+.head th {
+    padding: 15px;
+    text-align: center;
+}
+
+.tag td {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+.tag:hover {
+    background-color: rgb(248, 248, 248);
+}
+
+/* Action Buttons */
+.edit-btn,
+.view-btn,
+.view-small-btn {
+    padding: 8px 15px;
+    background-color: rgb(0, 102, 204);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: 0.3s ease;
+}
+
+.edit-btn:hover,
+.view-btn:hover,
+.view-small-btn:hover {
+    background-color: rgb(0, 85, 170);
+}
+
+.delete-btn {
+    padding: 8px 15px;
+    background-color: rgb(231, 76, 60);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: rgb(192, 57, 43);
+}
+
+/* Status Badges */
+.status-booked,
+.status-completed,
+.status-cancelled {
+    padding: 5px 12px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.status-booked {
+    color: rgb(52, 152, 219);
+}
+
+.status-completed {
+    color: rgb(39, 174, 96);
+}
+
+.status-cancelled {
+    color: rgb(231, 76, 60);
+}
+
+/* Footer */
+footer {
+    background-color: rgb(0, 70, 140);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.footer-section {
+    width: 250px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    border-bottom: 2px solid white;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid white;
+    padding-top: 10px;
+    font-size: 13px;
+    color: white;
+}

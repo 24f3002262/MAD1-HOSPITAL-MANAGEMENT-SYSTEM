@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Patient History | Hospital Management System</title>
+    <link rel="stylesheet" href="/static/update_treatment.css">
+</head>
+
+<body>
+    <header>
+        <div class="nav-bar">
+            <h2>Update Patient History</h2>
+            <input type="button" class="back-btn" value="Back"
+                onclick="window.location.href='{{ url_for('doctor_dashboard') }}'">
+        </div>
+    </header>
+
+    <main>
+        <div class="treatment-container">
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <p class="flash {{ category }}">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <div class="patient-info">
+                <h2>Patient Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Patient Name:</span>
+                        <span class="value">{{ appointment.patient.first_name }} {{ appointment.patient.last_name }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Patient ID:</span>
+                        <span class="value">{{ appointment.patient.patient_id }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Department:</span>
+                        <span class="value">{{ appointment.doctor.department.name }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Appointment Date:</span>
+                        <span class="value">{{ appointment.appointment_date.strftime('%d/%m/%Y') }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <form id="treatment-form" method="POST" action="{{ url_for('update_treatment', appointment_id=appointment.id) }}">
+                <h2 class="form-title">Treatment Details</h2>
+
+                <div class="form-group">
+                    <label>Visit Type <span class="required">*</span></label>
+                    <select name="visit_type" required>
+                        <option value="">Select Visit Type</option>
+                        <option value="In-Person">In-Person</option>
+                        <option value="Teleconsult">Teleconsult</option>
+                        <option value="Follow-up">Follow-up</option>
+                        <option value="Emergency">Emergency</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Tests Done</label>
+                    <input type="text" name="tests" placeholder="E.g., ECG, Blood Test, X-Ray">
+                </div>
+
+                <div class="form-group">
+                    <label>Diagnosis <span class="required">*</span></label>
+                    <textarea name="diagnosis" rows="4" placeholder="Enter diagnosis details..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Prescription/Treatment Plan <span class="required">*</span></label>
+                    <textarea name="prescription" rows="5" placeholder="Enter prescription details and treatment plan..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Medicines Prescribed</label>
+                    <div class="medicine-list">
+                        <div class="medicine-item">
+                            <input type="text" placeholder="Medicine Name" name="medicine_1">
+                            <input type="text" placeholder="Dosage (e.g., 1-0-1)" name="dosage_1">
+                            <input type="text" placeholder="Duration (e.g., 7 days)" name="duration_1">
+                        </div>
+                        <div class="medicine-item">
+                            <input type="text" placeholder="Medicine Name" name="medicine_2">
+                            <input type="text" placeholder="Dosage (e.g., 1-0-1)" name="dosage_2">
+                            <input type="text" placeholder="Duration (e.g., 7 days)" name="duration_2">
+                        </div>
+                        <div class="medicine-item">
+                            <input type="text" placeholder="Medicine Name" name="medicine_3">
+                            <input type="text" placeholder="Dosage (e.g., 1-0-1)" name="dosage_3">
+                            <input type="text" placeholder="Duration (e.g., 7 days)" name="duration_3">
+                        </div>
+                    </div>
+                    <button type="button" class="add-medicine-btn" onclick="addMedicineField()">+ Add More Medicines</button>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Notes</label>
+                    <textarea name="notes" rows="3" placeholder="Any additional observations or instructions..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Next Follow-up Date</label>
+                    <input type="date" name="followup_date">
+                </div>
+
+                <div class="button-group">
+                    <input type="submit" value="Save & Mark as Completed" class="submit-btn">
+                    <input type="button" value="Save as Draft" class="draft-btn" disabled title="Draft option not enabled">
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>We provide high-quality healthcare with modern facilities and expert doctors.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('doctor_list') }}">Doctors</a>
+                    <a href="#departments">Departments</a>
+                    <a href="{{ url_for('doctor_dashboard') }}">Appointments</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📍 ABC Road, Patna</p>
+                    <p>📞 +91-88756-58XXX</p>
+                    <p>✉️ info@hms.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Management System | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Minimal JS to allow multiple medicine entries -->
+    <script>
+        function addMedicineField() {
+            const container = document.querySelector('.medicine-list');
+            const index = container.children.length + 1;
+            const div = document.createElement('div');
+            div.classList.add('medicine-item');
+            div.innerHTML = `
+                <input type="text" placeholder="Medicine Name" name="medicine_${index}">
+                <input type="text" placeholder="Dosage (e.g., 1-0-1)" name="dosage_${index}">
+                <input type="text" placeholder="Duration (e.g., 7 days)" name="duration_${index}">
+            `;
+            container.appendChild(div);
+        }
+    </script>
+
+</body>
+
+</html>

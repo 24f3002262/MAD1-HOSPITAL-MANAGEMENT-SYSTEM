@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='book_appoinment.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-bar">
+            <h2>Book Appointment</h2>
+            <input type="button" class="back-btn" value="Back to Dashboard"
+                onclick="window.location.href='{{ url_for('patient_dashboard') }}'">
+        </div>
+    </header>
+
+    <main>
+        <div class="booking-container">
+            <h2 class="page-title">Schedule Your Appointment</h2>
+
+            <div class="doctor-info-card">
+                <div class="doctor-details">
+                    <h3>Dr. {{ doctor.first_name }} {{ doctor.last_name }}</h3>
+                    <p><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+                    <p><strong>Education:</strong> {{ doctor.education }}</p>
+                    <p><strong>Experience:</strong> {{ doctor.experience }} Years</p>
+                </div>
+            </div>
+
+            
+            <form id="appointment-form" method="POST" action="{{ url_for('book_appointment', doctor_id=doctor.id) }}">
+
+                <div class="form-section">
+                    <h3 class="section-title">Patient Information</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Patient Name</label>
+                            <input type="text" value="{{ patient.first_name }} {{ patient.last_name }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Patient ID</label>
+                            <input type="text" value="{{ patient.patient_id }}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <input type="text" value="{{ patient.contact }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input type="number" value="{{ patient.age }}" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Appointment Details</h3>
+
+                    <div class="form-group">
+                        <label>Select Department</label>
+                        <select name="department" required>
+                            <option value="{{ doctor.department.name }}" selected>
+                                {{ doctor.department.name }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Doctor</label>
+                        <select name="doctor" required>
+                            <option value="{{ doctor.id }}" selected>
+                                Dr. {{ doctor.first_name }} {{ doctor.last_name }} - {{ doctor.specialization }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Preferred Date</label>
+                            <input type="date" name="appointment_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Time Slot</label>
+                            <select name="time_slot" required>
+                                <option value="">Select time slot</option>
+                                <option value="08:00-12:00">08:00 AM - 12:00 PM</option>
+                                <option value="12:00-17:00">12:00 PM - 05:00 PM</option>
+                                <option value="17:00-21:00">05:00 PM - 09:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Appointment Type</label>
+                        <select name="appointment_type" required>
+                            <option value="">Select appointment type</option>
+                            <option value="In-Person">In-Person Consultation</option>
+                            <option value="Teleconsult">Teleconsultation</option>
+                            <option value="Follow-up">Follow-up Visit</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Reason for Visit</label>
+                        <textarea name="reason" rows="4" placeholder="Describe your health issue..."></textarea>
+                    </div>
+                </div>
+
+                <!-- DOCTOR AVAILABILITY (Corrected Loop) -->
+                <div class="availability-notice">
+                    <h4>Doctor's Availability for Next 7 Days:</h4>
+                    <div class="availability-slots">
+                        {% for slot in availability %}
+                            {% if slot.is_available %}
+                                <div class="slot-item available">
+                                    <strong>{{ slot.date.strftime('%d/%m/%Y') }}:</strong> {{ slot.time_slot }}
+                                </div>
+                            {% else %}
+                                <div class="slot-item unavailable">
+                                    <strong>{{ slot.date.strftime('%d/%m/%Y') }}:</strong> Not Available
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="confirm-btn">Confirm Appointment</button>
+                    <button type="reset" class="reset-btn">Clear Form</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>We provide high-quality healthcare with modern facilities and expert doctors.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('doctor_list') }}">Doctors</a>
+                    <a href="{{ url_for('patient_dashboard') }}">Appointments</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📍 ABC Road, Patna</p>
+                    <p>📞 +91-88756-58XXX</p>
+                    <p>✉️ info@hms.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Management System | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

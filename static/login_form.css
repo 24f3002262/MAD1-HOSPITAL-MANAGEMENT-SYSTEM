@@ -1,0 +1,224 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding-top: 50px;
+    background-color: rgb(230, 242, 255);
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 70, 140);
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    box-sizing: border-box;
+    color: white;
+    padding: 10px 30px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.nav-bar h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+}
+
+.nav-bar ul li {
+    margin-left: 25px;
+}
+
+.nav-bar ul li a {
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+.nav-bar ul li:hover{
+    text-decoration: underline;
+}
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginBox {
+    width: 400px;
+    background-color: white;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    padding: 30px 20px;
+    box-shadow: 0px 4px 15px rgba(0, 50, 100, 0.15);
+}
+
+/* .container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    background: linear-gradient(rgb(0,0,0,0.5), rgb(0,0,0,0.8)),
+                url(/images/background-hero-section.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(2px);
+    z-index: -1;
+}
+
+
+.loginBox {
+    position: relative;
+    z-index: 1;
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    padding: 30px 20px;
+    box-shadow: 0px 4px 15px rgba(0, 50, 100, 0.2);
+} */
+
+
+.headText {
+    color: rgb(0, 70, 140);
+    text-align: center;
+}
+
+.userdetails {
+    text-align: left;
+    font-size: 14px;
+    color: rgb(20, 60, 120);
+}
+
+.d1 {
+    width: 370px;
+    border: 1px solid rgb(170, 200, 240);
+    outline: none;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    transition: border-color 0.5s ease;
+}
+
+.d1:focus {
+    border-color: rgb(0, 102, 204);
+}
+
+.forgot {
+    display: flex;
+    justify-content: end;
+}
+
+.forgot a {
+    font-size: 13px;
+    text-decoration: none;
+    color: rgb(20, 60, 120);
+}
+
+.btn input {
+    width: 400px;
+    border-radius: 8px;
+    border: none;
+    background-color: rgb(0, 102, 204);
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.btn input:hover {
+    background-color: rgb(0, 85, 170);
+}
+
+.end {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.d2 {
+    text-decoration: none;
+    font-size: 13px;
+    color: rgb(20, 60, 120);
+    margin: 0 5px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+footer {
+    background-color: rgb(0, 70, 140);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.footer-section {
+    width: 250px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    border-bottom: 2px solid white;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid white;
+    padding-top: 10px;
+    font-size: 13px;
+    color: white;
+}
